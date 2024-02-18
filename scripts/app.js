@@ -42,6 +42,7 @@ for (const btn of buttons) {
         if ( count >= 4){
             buttons.forEach(button => {
                 button.setAttribute("disabled", true);
+                
             });
         }
         if ( count < 4){
@@ -50,7 +51,11 @@ for (const btn of buttons) {
         else{
             couponApplyBtn.removeAttribute("disabled", true)
         }
-        puschaseBtn.removeAttribute("disabled", true);
+        if(phoneNumbers.length < 1){
+            puschaseBtn.setAttribute("disabled", true);
+        }
+         puschaseBtn.removeAttribute("disabled", true);
+
         
         
         
@@ -59,11 +64,16 @@ for (const btn of buttons) {
 
 }
 
+const phoneNumber = document.getElementById('phoneNumbe');
+const phoneNumbers = phoneNumber.value;
 const puschaseBtn = document.getElementById('nextBtn')
 const couponApplyBtn = document.getElementById('couponApplyBtn')
 if (validationArray.length < 1){
 puschaseBtn.setAttribute("disabled", true);
 couponApplyBtn.setAttribute("disabled", true);
+}
+if(phoneNumbers.length < 1){
+    puschaseBtn.setAttribute("disabled", true);
 }
 
 
@@ -85,8 +95,9 @@ couponApplyBtn.addEventListener('click', function(){
         const newGrandTotalPrice = parseFloat(grandTotalAmount.innerText)
         const grandTotalWithDiscount = newGrandTotalPrice - newDiscount;
         grandTotalAmount.innerText = grandTotalWithDiscount;
-
-        couponApplyBtn.setAttribute("disabled", true);
+        const couponInputArea = document.getElementById('couponInputArea')
+        couponInputArea.classList.add('hidden')
+        
 
     }
     else if ( couponField === 'Couple 20'){
@@ -103,19 +114,15 @@ couponApplyBtn.addEventListener('click', function(){
         const newGrandTotalPrice = parseFloat(grandTotalAmount.innerText)
         const grandTotalWithDiscount = newGrandTotalPrice - newDiscount;
         grandTotalAmount.innerText = grandTotalWithDiscount;
-
-        couponApplyBtn.setAttribute("disabled", true);
+        const couponInputArea = document.getElementById('couponInputArea')
+        couponInputArea.classList.add('hidden')
     }
         
     else{
-        alert('invalid')
+        alert('invalid coupon code')
         couponField.value = " ";
     }
 })
-
-
-    
-
 
     
     
